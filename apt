@@ -1,0 +1,23 @@
+#!/bin/bash
+case $1 in
+    "install")
+        shift
+        sudo pacman -S "$@"
+        ;;
+    "search")
+        shift
+        pacman -Ss "$@"
+        ;;
+    "autoremove")
+        sudo pacman -Rns $(pacman -Qdtq 2>/dev/null)
+        ;;
+    "update")
+        sudo pacman -Syu
+        ;;
+    *)
+        echo "Arch Linux 中使用 pacman:"
+        echo "  apt install <包名>   → pacman -S"
+        echo "  apt search <关键词>  → pacman -Ss"
+        echo "  apt autoremove      → 删除无用依赖"
+        ;;
+esac
